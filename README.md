@@ -23,28 +23,27 @@ The workflow handles:
 
 ## Workflow Screenshots  
 
-Below are key points of the workflow with reference images (replace links with your actual screenshots):  
+Below are key points of the workflow with reference images:  
 
 1. **Google Sheets Input Node**  
    Reads lead data from the sheet.  
-   ![Google Sheets Input](n1.png)
+   ![Google Sheets Input](docs/images/n1.png)
 
 2. **Code Node (RFC822 Builder)**  
    Prepares the email subject, body, and raw payload.  
-   ![Code Node](n5.png)
+   ![Code Node](docs/images/n5.png)
 
 3. **HTTP Request Node (Send Email)**  
    Posts the `raw` payload to Gmail API.  
-   ![HTTP Request Node](n3.png)
+   ![HTTP Request Node](docs/images/n3.png)
 
 4. **Reply Detection**  
    Checks if a recipient replied and updates the sheet accordingly.  
-   ![Reply Detection](n2.png)
+   ![Reply Detection](docs/images/n2.png)
 
 5. **Full Workflow Canvas**  
    The complete pipeline showing all connected nodes.  
-   ![Full Workflow](n4.png)
-   
+   ![Full Workflow](docs/images/n4.png)
 
 ---
 
