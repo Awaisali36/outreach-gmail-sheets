@@ -1,0 +1,2771 @@
+{
+  "name": "Leads_Gen_2",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -2176,
+        1376
+      ],
+      "id": "a82e3a47-3727-4e44-9235-0d341f4f19d1",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json['sender_email '] }}",
+                    "rightValue": "kiaghasem.dev@gmail.com",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b895fd00-6f66-41d1-ab55-b1337e744a7f"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "kgd"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b90ae81e-e015-4138-955b-f8efae253fba",
+                    "leftValue": "={{ $json['sender_email '] }}",
+                    "rightValue": "kia@kamexa.ai",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "k"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "93b60147-610f-4c3c-adf6-a7f8b2159096",
+                    "leftValue": "={{ $json['sender_email '] }}",
+                    "rightValue": "youremail@gmail.com",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "h"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1728,
+        1376
+      ],
+      "id": "a0757549-4cdd-4f1a-9e47-0cc6eaf7d5cb",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d1b89f0-661b-4b21-9bb2-cb8419b22035",
+              "name": "replied",
+              "value": "={{ Object.keys($json).length > 0 ? \"Yes\" : \"No\" }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        1616
+      ],
+      "id": "c3cc973e-21a7-4dbc-9797-88bd3593e737",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "177601be-b2c3-45cc-8e15-cd064fbaf578",
+              "leftValue": "={{ $json.replied }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        1648
+      ],
+      "id": "8aaf129f-e4bd-4ee5-b844-2a1f31de6317",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        48,
+        1472
+      ],
+      "id": "1eb31305-7f12-4389-bc4a-da7d920cecc7",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 1,
+        "filters": {
+          "sender": "={{ $json['sender_email '] }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        1616
+      ],
+      "id": "c4535de9-b92b-488a-9602-d20980dcb42c",
+      "name": "Replied?1",
+      "webhookId": "6cdae860-913e-4fa7-97af-e49f0cdcd11d",
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "public_profile_url ": "={{ $json['public_profile_url '] }}",
+            "replied ": "={{ $json['replied '] }}"
+          },
+          "matchingColumns": [
+            "public_profile_url "
+          ],
+          "schema": [
+            {
+              "id": "first_name ",
+              "displayName": "first_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_name ",
+              "displayName": "last_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website_url ",
+              "displayName": "website_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "public_profile_url ",
+              "displayName": "public_profile_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "analyzed ",
+              "displayName": "analyzed ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "research_report ",
+              "displayName": "research_report ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_subject ",
+              "displayName": "email1_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_body ",
+              "displayName": "email1_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_body ",
+              "displayName": "email2_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_subject ",
+              "displayName": "email3_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_body ",
+              "displayName": "email3_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_email ",
+              "displayName": "sender_email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tz_bucket ",
+              "displayName": "tz_bucket ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_sent ",
+              "displayName": "email1_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_sent ",
+              "displayName": "email2_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_sent",
+              "displayName": "email3_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replied ",
+              "displayName": "replied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "optout_token ",
+              "displayName": "optout_token ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opted_out ",
+              "displayName": "opted_out ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        1840
+      ],
+      "id": "e2555ed7-a578-4ba4-9370-2b89d9568520",
+      "name": "Replied = Yes1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "public_profile_url ": "={{ $json['public_profile_url '] }}",
+            "replied ": "={{ $json['replied '] }}"
+          },
+          "matchingColumns": [
+            "LinkedIn URL"
+          ],
+          "schema": [
+            {
+              "id": "first_name ",
+              "displayName": "first_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_name ",
+              "displayName": "last_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website_url ",
+              "displayName": "website_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "public_profile_url ",
+              "displayName": "public_profile_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "analyzed ",
+              "displayName": "analyzed ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "research_report ",
+              "displayName": "research_report ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_subject ",
+              "displayName": "email1_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_body ",
+              "displayName": "email1_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_body ",
+              "displayName": "email2_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_subject ",
+              "displayName": "email3_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_body ",
+              "displayName": "email3_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_email ",
+              "displayName": "sender_email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tz_bucket ",
+              "displayName": "tz_bucket ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_sent ",
+              "displayName": "email1_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_sent ",
+              "displayName": "email2_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_sent",
+              "displayName": "email3_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replied ",
+              "displayName": "replied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "optout_token ",
+              "displayName": "optout_token ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opted_out ",
+              "displayName": "opted_out ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -160,
+        1168
+      ],
+      "id": "373bac38-e2bc-48d9-947c-782cea8b7c1b",
+      "name": "Google Sheets9",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -736,
+        1456
+      ],
+      "id": "c45e889c-41e8-4396-86de-352caf41b8e1",
+      "name": "Loop Over Items3"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1088,
+        1936
+      ],
+      "id": "44bcf775-cd7d-400c-aa96-17ccd16653cd",
+      "name": "Wait3",
+      "webhookId": "5fcbde9f-0750-405b-8ff7-8bce2e4a16ef"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/gmail/v1/users/me/messages/send",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gmailOAuth2",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "raw",
+              "value": "={{ $json.raw }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        1808
+      ],
+      "id": "955b532c-539d-4567-8d99-d2291ebb0075",
+      "name": "HTTP Request3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Code3 — builds Gmail RFC822 'raw' and decides next step.\n * Fix: normalize Google Sheet keys that contain trailing spaces.\n */\n\n// =============== Helpers ===============\nconst isYes = v =>\n  String(v ?? '').trim().toLowerCase() === 'yes' ||\n  String(v ?? '').trim() === '1' ||\n  String(v ?? '').trim().toLowerCase() === 'true';\n\nconst isNo = v =>\n  v == null ||\n  String(v).trim() === '' ||\n  String(v).trim().toLowerCase() === 'no' ||\n  String(v).trim() === '0' ||\n  String(v).trim().toLowerCase() === 'false';\n\nconst stripHidden = s =>\n  String(s ?? '')\n    .replace(/\\u200B|\\u200C|\\u200D|\\u2060|\\uFEFF|\\u00A0/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n\nconst extractEmail = raw => {\n  const s = stripHidden(raw).replace(/^\"+|\"+$/g, '');\n  let m = s.match(/<\\s*([^>]+)\\s*>/);\n  if (m && m[1]) return m[1].trim();\n  const first = s.split(',')[0].trim();\n  m = first.match(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,})/i);\n  return m ? m[1].trim() : '';\n};\n\nconst emailOk = e => /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(e);\n\n// =============== Input (normalize keys/values) ===============\nconst row = $input.item.json;\nconst r = {};\nfor (const k of Object.keys(row)) {\n  const trimmedKey = k.trim();\n  const v = row[k];\n  r[trimmedKey] = typeof v === 'string' ? v.trim() : v;\n}\n\n// =============== Early exits ===============\nif (isYes(r.replied) || isYes(r.opted_out)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'replied_or_opted_out' } }];\n}\n\n// =============== Decide which step to send ===============\nlet step = null;\nif (isNo(r.email1_sent)) step = 1;\nelse if (isNo(r.email2_sent)) step = 2;\nelse if (isNo(r.email3_sent)) step = 3;\n\nif (!step) {\n  return [{ json: { ...r, skip: true, skip_reason: 'all_steps_already_sent' } }];\n}\n\n// =============== Select subject/body ===============\nlet selected_subject = '';\nlet selected_body = '';\n\nif (step === 1) {\n  selected_subject = String(r.email1_subject ?? '');\n  selected_body    = String(r.email1_body ?? '');\n} else if (step === 2) {\n  selected_subject = String(r.email1_subject ?? ''); // reuse subject\n  selected_body    = String(r.email2_body ?? '');\n} else {\n  selected_subject = String(r.email3_subject ?? r.email1_subject ?? '');\n  selected_body    = String(r.email3_body ?? '');\n}\n\n// =============== Resolve addresses robustly ===============\nconst candidateTo = [r.email, r['Email Address'], r.recipient_email, r.to];\nconst candidateFrom = [r.sender_email, r.from];\n\nconst to   = extractEmail(candidateTo.find(v => v != null && String(v).trim() !== ''));\nconst from = extractEmail(candidateFrom.find(v => v != null && String(v).trim() !== ''));\n\nif (!to || !emailOk(to)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_recipient_email', details: { toRaw: candidateTo, toParsed: to } } }];\n}\nif (!from || !emailOk(from)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_sender_email', details: { fromRaw: candidateFrom, fromParsed: from } } }];\n}\n\n// =============== Build RFC822 (plain text) ===============\nconst displayNameTo = stripHidden(`${r.first_name ?? ''} ${r.last_name ?? ''}`);\nconst rfc822 =\n  `From: <${from}>\\r\\n` +\n  `To: ${displayNameTo ? `\"${displayNameTo}\" ` : ''}<${to}>\\r\\n` +\n  `Subject: ${selected_subject}\\r\\n` +\n  `MIME-Version: 1.0\\r\\n` +\n  `Content-Type: text/plain; charset=\"UTF-8\"\\r\\n` +\n  `Content-Transfer-Encoding: 7bit\\r\\n\\r\\n` +\n  `${selected_body}`;\n\nconst raw = Buffer.from(rfc822, 'utf8')\n  .toString('base64')\n  .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');\n\n// =============== Output ===============\nreturn [{\n  json: {\n    ...r,\n    sequence_step: step,\n    recipient_email: to,\n    sender_email: from,\n    selected_subject,\n    selected_body,\n    raw\n    // If replying to an existing thread: threadId: r.message_id\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        1696
+      ],
+      "id": "4211c424-70d3-4e1d-9c21-655773670d0e",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d1b89f0-661b-4b21-9bb2-cb8419b22035",
+              "name": "replied",
+              "value": "={{ Object.keys($json).length > 0 ? \"Yes\" : \"No\" }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -48,
+        432
+      ],
+      "id": "e578cc19-1622-4ca1-aed6-1fa06632fd9a",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "177601be-b2c3-45cc-8e15-cd064fbaf578",
+              "leftValue": "={{ $json.replied }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        480
+      ],
+      "id": "4d5c9ffd-7446-4df6-b7f3-a7e17faeb1bb",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        288
+      ],
+      "id": "2120f91d-b2b3-4364-99f9-9e06577b24f2",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 3,
+        "filters": {
+          "sender": "={{ $json['email '] }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        432
+      ],
+      "id": "cbaa13e5-83e2-477c-a165-43835e3fb8b8",
+      "name": "Replied?2",
+      "webhookId": "6cdae860-913e-4fa7-97af-e49f0cdcd11d",
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "public_profile_url ": "={{ $json['public_profile_url '] }}",
+            "replied ": "={{ $json['replied '] }}"
+          },
+          "matchingColumns": [
+            "public_profile_url "
+          ],
+          "schema": [
+            {
+              "id": "first_name ",
+              "displayName": "first_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_name ",
+              "displayName": "last_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website_url ",
+              "displayName": "website_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "public_profile_url ",
+              "displayName": "public_profile_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "analyzed ",
+              "displayName": "analyzed ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "research_report ",
+              "displayName": "research_report ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_subject ",
+              "displayName": "email1_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_body ",
+              "displayName": "email1_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_body ",
+              "displayName": "email2_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_subject ",
+              "displayName": "email3_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_body ",
+              "displayName": "email3_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_email ",
+              "displayName": "sender_email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tz_bucket ",
+              "displayName": "tz_bucket ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_sent ",
+              "displayName": "email1_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_sent ",
+              "displayName": "email2_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_sent",
+              "displayName": "email3_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replied ",
+              "displayName": "replied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "optout_token ",
+              "displayName": "optout_token ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opted_out ",
+              "displayName": "opted_out ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        640,
+        656
+      ],
+      "id": "e493f129-21c4-445d-8c6d-bea84bf7f186",
+      "name": "Replied = Yes2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "public_profile_url ": "={{ $json['public_profile_url '] }}"
+          },
+          "matchingColumns": [
+            "public_profile_url "
+          ],
+          "schema": [
+            {
+              "id": "first_name ",
+              "displayName": "first_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_name ",
+              "displayName": "last_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website_url ",
+              "displayName": "website_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "public_profile_url ",
+              "displayName": "public_profile_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "analyzed ",
+              "displayName": "analyzed ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "research_report ",
+              "displayName": "research_report ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_subject ",
+              "displayName": "email1_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_body ",
+              "displayName": "email1_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_body ",
+              "displayName": "email2_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_subject ",
+              "displayName": "email3_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_body ",
+              "displayName": "email3_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_email ",
+              "displayName": "sender_email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tz_bucket ",
+              "displayName": "tz_bucket ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_sent ",
+              "displayName": "email1_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_sent ",
+              "displayName": "email2_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_sent",
+              "displayName": "email3_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replied ",
+              "displayName": "replied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "optout_token ",
+              "displayName": "optout_token ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opted_out ",
+              "displayName": "opted_out ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b6fa1e51-8a26-486a-b371-7d6555ca5677",
+      "name": "Google Sheets10",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -576,
+        272
+      ],
+      "id": "f3f41613-3005-43eb-88f9-b1d68fc5406d",
+      "name": "Loop Over Items4"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1248,
+        752
+      ],
+      "id": "b382fe73-3298-45e8-80e3-9f4fc8cb2d59",
+      "name": "Wait4",
+      "webhookId": "5fcbde9f-0750-405b-8ff7-8bce2e4a16ef"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gmailOAuth2",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "raw",
+              "value": "={{ $json['raw'] }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        640
+      ],
+      "id": "1b856876-b25e-4930-ba4d-6ddbdc75a0fc",
+      "name": "HTTP Request4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Code3 — builds Gmail RFC822 'raw' and decides next step.\n * Fix: normalize Google Sheet keys that contain trailing spaces.\n */\n\n// =============== Helpers ===============\nconst isYes = v =>\n  String(v ?? '').trim().toLowerCase() === 'yes' ||\n  String(v ?? '').trim() === '1' ||\n  String(v ?? '').trim().toLowerCase() === 'true';\n\nconst isNo = v =>\n  v == null ||\n  String(v).trim() === '' ||\n  String(v).trim().toLowerCase() === 'no' ||\n  String(v).trim() === '0' ||\n  String(v).trim().toLowerCase() === 'false';\n\nconst stripHidden = s =>\n  String(s ?? '')\n    .replace(/\\u200B|\\u200C|\\u200D|\\u2060|\\uFEFF|\\u00A0/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n\nconst extractEmail = raw => {\n  const s = stripHidden(raw).replace(/^\"+|\"+$/g, '');\n  let m = s.match(/<\\s*([^>]+)\\s*>/);\n  if (m && m[1]) return m[1].trim();\n  const first = s.split(',')[0].trim();\n  m = first.match(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,})/i);\n  return m ? m[1].trim() : '';\n};\n\nconst emailOk = e => /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(e);\n\n// =============== Input (normalize keys/values) ===============\nconst row = $input.item.json;\nconst r = {};\nfor (const k of Object.keys(row)) {\n  const trimmedKey = k.trim();\n  const v = row[k];\n  r[trimmedKey] = typeof v === 'string' ? v.trim() : v;\n}\n\n// =============== Early exits ===============\nif (isYes(r.replied) || isYes(r.opted_out)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'replied_or_opted_out' } }];\n}\n\n// =============== Decide which step to send ===============\nlet step = null;\nif (isNo(r.email1_sent)) step = 1;\nelse if (isNo(r.email2_sent)) step = 2;\nelse if (isNo(r.email3_sent)) step = 3;\n\nif (!step) {\n  return [{ json: { ...r, skip: true, skip_reason: 'all_steps_already_sent' } }];\n}\n\n// =============== Select subject/body ===============\nlet selected_subject = '';\nlet selected_body = '';\n\nif (step === 1) {\n  selected_subject = String(r.email1_subject ?? '');\n  selected_body    = String(r.email1_body ?? '');\n} else if (step === 2) {\n  selected_subject = String(r.email1_subject ?? ''); // reuse subject\n  selected_body    = String(r.email2_body ?? '');\n} else {\n  selected_subject = String(r.email3_subject ?? r.email1_subject ?? '');\n  selected_body    = String(r.email3_body ?? '');\n}\n\n// =============== Resolve addresses robustly ===============\nconst candidateTo = [r.email, r['Email Address'], r.recipient_email, r.to];\nconst candidateFrom = [r.sender_email, r.from];\n\nconst to   = extractEmail(candidateTo.find(v => v != null && String(v).trim() !== ''));\nconst from = extractEmail(candidateFrom.find(v => v != null && String(v).trim() !== ''));\n\nif (!to || !emailOk(to)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_recipient_email', details: { toRaw: candidateTo, toParsed: to } } }];\n}\nif (!from || !emailOk(from)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_sender_email', details: { fromRaw: candidateFrom, fromParsed: from } } }];\n}\n\n// =============== Build RFC822 (plain text) ===============\nconst displayNameTo = stripHidden(`${r.first_name ?? ''} ${r.last_name ?? ''}`);\nconst rfc822 =\n  `From: <${from}>\\r\\n` +\n  `To: ${displayNameTo ? `\"${displayNameTo}\" ` : ''}<${to}>\\r\\n` +\n  `Subject: ${selected_subject}\\r\\n` +\n  `MIME-Version: 1.0\\r\\n` +\n  `Content-Type: text/plain; charset=\"UTF-8\"\\r\\n` +\n  `Content-Transfer-Encoding: 7bit\\r\\n\\r\\n` +\n  `${selected_body}`;\n\nconst raw = Buffer.from(rfc822, 'utf8')\n  .toString('base64')\n  .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');\n\n// =============== Output ===============\nreturn [{\n  json: {\n    ...r,\n    sequence_step: step,\n    recipient_email: to,\n    sender_email: from,\n    selected_subject,\n    selected_body,\n    raw\n    // If replying to an existing thread: threadId: r.message_id\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        512
+      ],
+      "id": "ecf566f1-61c5-4aee-b346-05cc8dead4aa",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d1b89f0-661b-4b21-9bb2-cb8419b22035",
+              "name": "replied",
+              "value": "={{ Object.keys($json).length > 0 ? \"Yes\" : \"No\" }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        2736
+      ],
+      "id": "b36522ad-fabc-45cc-81f8-92897fc235a9",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "177601be-b2c3-45cc-8e15-cd064fbaf578",
+              "leftValue": "={{ $json.replied }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        2768
+      ],
+      "id": "a262a03e-292f-4ebb-982b-7f45153485e2",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        48,
+        2592
+      ],
+      "id": "5715d6ed-9fc2-4662-90db-b8119382022e",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 3,
+        "filters": {
+          "sender": "={{ $json.email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        2736
+      ],
+      "id": "c233b9b6-344a-495d-92c5-bcb7401fc606",
+      "name": "Replied?3",
+      "webhookId": "6cdae860-913e-4fa7-97af-e49f0cdcd11d",
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1pY5nJihyUUObA1LpbhdgANq0DSX7A9TLOTWlEr9PMBk",
+          "mode": "list",
+          "cachedResultName": "Research",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pY5nJihyUUObA1LpbhdgANq0DSX7A9TLOTWlEr9PMBk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pY5nJihyUUObA1LpbhdgANq0DSX7A9TLOTWlEr9PMBk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "LinkedIn URL": "={{ $json[\"LinkedIn URL\"] }}",
+            "Replied": "Yes"
+          },
+          "matchingColumns": [
+            "LinkedIn URL"
+          ],
+          "schema": [
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Address",
+              "displayName": "Email Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Country ",
+              "displayName": "Country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Industry",
+              "displayName": "Industry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Title",
+              "displayName": "Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Seniority",
+              "displayName": "Seniority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website URL",
+              "displayName": "Website URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkedIn URL",
+              "displayName": "LinkedIn URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Analysed",
+              "displayName": "Analysed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Research Report",
+              "displayName": "Research Report",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#1 Body",
+              "displayName": "Email#1 Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#1 Subject",
+              "displayName": "Email#1 Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email #2 Body",
+              "displayName": "Email #2 Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#3 Body",
+              "displayName": "Email#3 Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#3 Subject",
+              "displayName": "Email#3 Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sender Email",
+              "displayName": "Sender Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time Zone",
+              "displayName": "Time Zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#1 Sent",
+              "displayName": "Email#1 Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#2 Sent",
+              "displayName": "Email#2 Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email#3 Sent",
+              "displayName": "Email#3 Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message ID",
+              "displayName": "Message ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Replied",
+              "displayName": "Replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Token",
+              "displayName": "Token",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Opted Out",
+              "displayName": "Opted Out",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        2960
+      ],
+      "id": "d0901264-9633-480c-8cbc-6d1cfa612c1c",
+      "name": "Replied = Yes3"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE",
+          "mode": "list",
+          "cachedResultName": "Leads_Gen",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qg58N1Ye6tgeBQDNX68zaFHzkctQRD0xmUfGxBnzlcE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "public_profile_url ": "={{ $json['public_profile_url '] }}",
+            "replied ": "={{ $json['replied '] }}"
+          },
+          "matchingColumns": [
+            "LinkedIn URL"
+          ],
+          "schema": [
+            {
+              "id": "first_name ",
+              "displayName": "first_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "last_name ",
+              "displayName": "last_name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website_url ",
+              "displayName": "website_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "public_profile_url ",
+              "displayName": "public_profile_url ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "analyzed ",
+              "displayName": "analyzed ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "research_report ",
+              "displayName": "research_report ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_subject ",
+              "displayName": "email1_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_body ",
+              "displayName": "email1_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_body ",
+              "displayName": "email2_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_subject ",
+              "displayName": "email3_subject ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_body ",
+              "displayName": "email3_body ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_email ",
+              "displayName": "sender_email ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tz_bucket ",
+              "displayName": "tz_bucket ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email1_sent ",
+              "displayName": "email1_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email2_sent ",
+              "displayName": "email2_sent ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email3_sent",
+              "displayName": "email3_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replied ",
+              "displayName": "replied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "optout_token ",
+              "displayName": "optout_token ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opted_out ",
+              "displayName": "opted_out ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -160,
+        2288
+      ],
+      "id": "148921ef-810f-4008-bd9a-9cc081f137bd",
+      "name": "Google Sheets12",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "j6IEI9HXXhok7EZW",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -736,
+        2576
+      ],
+      "id": "af7992ba-d0bf-4199-8927-4f35a61c9c7a",
+      "name": "Loop Over Items6"
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1088,
+        3056
+      ],
+      "id": "aa2267ff-2f2f-49b3-bd79-3f5f2a159e30",
+      "name": "Wait6",
+      "webhookId": "5fcbde9f-0750-405b-8ff7-8bce2e4a16ef"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/gmail/v1/users/me/messages/send",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "gmailOAuth2",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "raw",
+              "value": "={{ $json.raw }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        2928
+      ],
+      "id": "9d898086-7fb3-4d71-ad29-8ec5b04f233a",
+      "name": "HTTP Request6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gEchuyoT7ZKTS4Sd",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Code3 — builds Gmail RFC822 'raw' and decides next step.\n * Fix: normalize Google Sheet keys that contain trailing spaces.\n */\n\n// =============== Helpers ===============\nconst isYes = v =>\n  String(v ?? '').trim().toLowerCase() === 'yes' ||\n  String(v ?? '').trim() === '1' ||\n  String(v ?? '').trim().toLowerCase() === 'true';\n\nconst isNo = v =>\n  v == null ||\n  String(v).trim() === '' ||\n  String(v).trim().toLowerCase() === 'no' ||\n  String(v).trim() === '0' ||\n  String(v).trim().toLowerCase() === 'false';\n\nconst stripHidden = s =>\n  String(s ?? '')\n    .replace(/\\u200B|\\u200C|\\u200D|\\u2060|\\uFEFF|\\u00A0/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n\nconst extractEmail = raw => {\n  const s = stripHidden(raw).replace(/^\"+|\"+$/g, '');\n  let m = s.match(/<\\s*([^>]+)\\s*>/);\n  if (m && m[1]) return m[1].trim();\n  const first = s.split(',')[0].trim();\n  m = first.match(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,})/i);\n  return m ? m[1].trim() : '';\n};\n\nconst emailOk = e => /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(e);\n\n// =============== Input (normalize keys/values) ===============\nconst row = $input.item.json;\nconst r = {};\nfor (const k of Object.keys(row)) {\n  const trimmedKey = k.trim();\n  const v = row[k];\n  r[trimmedKey] = typeof v === 'string' ? v.trim() : v;\n}\n\n// =============== Early exits ===============\nif (isYes(r.replied) || isYes(r.opted_out)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'replied_or_opted_out' } }];\n}\n\n// =============== Decide which step to send ===============\nlet step = null;\nif (isNo(r.email1_sent)) step = 1;\nelse if (isNo(r.email2_sent)) step = 2;\nelse if (isNo(r.email3_sent)) step = 3;\n\nif (!step) {\n  return [{ json: { ...r, skip: true, skip_reason: 'all_steps_already_sent' } }];\n}\n\n// =============== Select subject/body ===============\nlet selected_subject = '';\nlet selected_body = '';\n\nif (step === 1) {\n  selected_subject = String(r.email1_subject ?? '');\n  selected_body    = String(r.email1_body ?? '');\n} else if (step === 2) {\n  selected_subject = String(r.email1_subject ?? ''); // reuse subject\n  selected_body    = String(r.email2_body ?? '');\n} else {\n  selected_subject = String(r.email3_subject ?? r.email1_subject ?? '');\n  selected_body    = String(r.email3_body ?? '');\n}\n\n// =============== Resolve addresses robustly ===============\nconst candidateTo = [r.email, r['Email Address'], r.recipient_email, r.to];\nconst candidateFrom = [r.sender_email, r.from];\n\nconst to   = extractEmail(candidateTo.find(v => v != null && String(v).trim() !== ''));\nconst from = extractEmail(candidateFrom.find(v => v != null && String(v).trim() !== ''));\n\nif (!to || !emailOk(to)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_recipient_email', details: { toRaw: candidateTo, toParsed: to } } }];\n}\nif (!from || !emailOk(from)) {\n  return [{ json: { ...r, skip: true, skip_reason: 'invalid_or_missing_sender_email', details: { fromRaw: candidateFrom, fromParsed: from } } }];\n}\n\n// =============== Build RFC822 (plain text) ===============\nconst displayNameTo = stripHidden(`${r.first_name ?? ''} ${r.last_name ?? ''}`);\nconst rfc822 =\n  `From: <${from}>\\r\\n` +\n  `To: ${displayNameTo ? `\"${displayNameTo}\" ` : ''}<${to}>\\r\\n` +\n  `Subject: ${selected_subject}\\r\\n` +\n  `MIME-Version: 1.0\\r\\n` +\n  `Content-Type: text/plain; charset=\"UTF-8\"\\r\\n` +\n  `Content-Transfer-Encoding: 7bit\\r\\n\\r\\n` +\n  `${selected_body}`;\n\nconst raw = Buffer.from(rfc822, 'utf8')\n  .toString('base64')\n  .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');\n\n// =============== Output ===============\nreturn [{\n  json: {\n    ...r,\n    sequence_step: step,\n    recipient_email: to,\n    sender_email: from,\n    selected_subject,\n    selected_body,\n    raw\n    // If replying to an existing thread: threadId: r.message_id\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        2816
+      ],
+      "id": "6c9a1b03-338c-4457-84be-962023f8d6fe",
+      "name": "Code6"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 11 * * Wed"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2496,
+        1392
+      ],
+      "id": "aebe0f17-ea46-4168-a597-311d46aac0bd",
+      "name": "Schedule Trigger1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Replied = Yes1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied?1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied = Yes1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replied?1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Replied = Yes2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied?2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied = Yes2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replied?2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Replied = Yes3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied?3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replied = Yes3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items6": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets12",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replied?3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait6": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request6": {
+      "main": [
+        [
+          {
+            "node": "Wait6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5a1c32a3-7354-422d-a91f-e89ee868e34a",
+  "meta": {
+    "instanceId": "bdf147a83c97897f4708fc68c0620c79e8993651e98ca178dd4bc351fae6a258"
+  },
+  "id": "inSOLmseHH0CGSmx",
+  "tags": []
+}
